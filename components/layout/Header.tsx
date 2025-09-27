@@ -8,14 +8,21 @@ export default function Header() {
       <div className="container-custom flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <div className="relative h-12 w-24">
-            <Image
-              src="/images/general_assets/OUR+new+logo+white+on+transparent.png"
-              alt="Oxford University Racing"
-              fill
-              className="object-contain"
-              priority
-            />
+          <div className="h-12 w-24 flex items-center justify-center">
+            {/* Fallback to PNG with proper styling */}
+            <div className="relative h-10 w-20">
+              <Image
+                src="/images/general_assets/OUR+new+logo+white+on+transparent.png"
+                alt="Oxford University Racing"
+                fill
+                className="object-contain [background:transparent] [mix-blend-mode:normal]"
+                priority
+                style={{
+                  backgroundColor: 'transparent',
+                  mixBlendMode: 'normal'
+                }}
+              />
+            </div>
           </div>
         </Link>
 
