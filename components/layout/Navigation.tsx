@@ -66,10 +66,10 @@ export default function Navigation() {
             <Link
               href={item.href}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-accent-red',
+                'text-sm font-medium transition-colors hover:text-oxford-peach',
                 isActive(item.href)
-                  ? 'text-accent-red'
-                  : 'text-gray-700 hover:text-gray-900'
+                  ? 'text-oxford-peach'
+                  : 'text-white hover:text-gray-200'
               )}
             >
               {item.title}
@@ -100,7 +100,7 @@ export default function Navigation() {
                     className={cn(
                       'block px-4 py-2 text-sm transition-colors hover:bg-gray-50',
                       isActive(child.href)
-                        ? 'text-accent-red'
+                        ? 'text-oxford-peach'
                         : 'text-gray-700 hover:text-gray-900'
                     )}
                   >
@@ -117,7 +117,7 @@ export default function Navigation() {
       <div className="md:hidden">
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+          className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-oxford-royal hover:text-white"
         >
           <span className="sr-only">Open main menu</span>
           {mobileMenuOpen ? (
@@ -143,7 +143,7 @@ export default function Navigation() {
                   className={cn(
                     'block rounded-md px-3 py-2 text-base font-medium transition-colors',
                     isActive(item.href)
-                      ? 'bg-accent-red text-white'
+                      ? 'bg-oxford-peach text-white'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                   )}
                   onClick={() => setMobileMenuOpen(false)}
@@ -159,7 +159,7 @@ export default function Navigation() {
                         className={cn(
                           'block rounded-md px-3 py-2 text-sm font-medium transition-colors',
                           isActive(child.href)
-                            ? 'bg-accent-red text-white'
+                            ? 'bg-oxford-peach text-white'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                         )}
                         onClick={() => setMobileMenuOpen(false)}
