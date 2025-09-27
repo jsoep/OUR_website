@@ -7,7 +7,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full bg-oxford-blue">
       <div className="container-custom flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-3">
+        <Link href="/" className="flex items-center">
           <div className="relative h-12 w-24">
             <Image
               src="/images/general_assets/OUR+new+logo+white+on+transparent.png"
@@ -16,10 +16,6 @@ export default function Header() {
               className="object-contain"
               priority
             />
-          </div>
-          <div className="hidden sm:block">
-            <div className="text-xl font-bold text-white">Oxford University Racing</div>
-            <div className="text-sm text-gray-300">Formula Student Team</div>
           </div>
         </Link>
 
