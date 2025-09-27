@@ -20,31 +20,18 @@ export default function HomePage() {
         videoId="9KrlCkwmILc"
         className="min-h-screen flex items-center justify-center"
       >
-        <div className="container mx-auto px-6 py-24 sm:py-32">
+        <div className="container mx-auto px-6">
           <div className="mx-auto max-w-4xl text-center">
-            {/* Large Logo */}
-            <div className="mb-12">
+            {/* Large Logo - Centered and Prominent */}
+            <div className="flex items-center justify-center h-screen">
               <Image
                 src="/images/general_assets/OUR+new+logo+white+on+transparent.png"
                 alt="Oxford University Racing"
-                width={400}
-                height={200}
+                width={600}
+                height={300}
                 className="mx-auto drop-shadow-2xl"
                 priority
               />
-            </div>
-
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 drop-shadow-lg">
-              Oxford University Racing
-            </h1>
-            <p className="text-lg leading-8 text-gray-100 sm:text-xl mb-8 drop-shadow">
-              The University of Oxford's official team for the Formula Student racing competition
-            </p>
-
-            <div className="mt-10">
-              <Button asChild size="lg" className="bg-white/90 hover:bg-white text-oxford-blue font-semibold">
-                <Link href="/team">MEET the team</Link>
-              </Button>
             </div>
 
             {/* Scroll down indicator */}
