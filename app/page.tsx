@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from '@/components/common/Button'
+import VideoBackground from '@/components/common/VideoBackground'
 import { getSponsors } from '@/lib/content'
 
 export const metadata: Metadata = {
@@ -14,37 +15,59 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero Section - Simplified to match live site */}
-      <section className="relative bg-white py-24 sm:py-32">
-        <div className="container mx-auto px-6">
+      {/* Hero Section with Video Background */}
+      <VideoBackground
+        videoId="9KrlCkwmILc"
+        className="min-h-screen flex items-center justify-center"
+      >
+        <div className="container mx-auto px-6 py-24 sm:py-32">
           <div className="mx-auto max-w-4xl text-center">
             {/* Large Logo */}
             <div className="mb-12">
               <Image
                 src="/images/general_assets/OUR+new+logo+white+on+transparent.png"
                 alt="Oxford University Racing"
-                width={300}
-                height={150}
-                className="mx-auto"
+                width={400}
+                height={200}
+                className="mx-auto drop-shadow-2xl"
                 priority
               />
             </div>
 
-            <h1 className="text-4xl font-bold tracking-tight text-oxford-blue sm:text-5xl mb-6">
-              Welcome to Oxford University Racing
+            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6 drop-shadow-lg">
+              Oxford University Racing
             </h1>
-            <p className="text-lg leading-8 text-gray-600 sm:text-xl">
+            <p className="text-lg leading-8 text-gray-100 sm:text-xl mb-8 drop-shadow">
               The University of Oxford's official team for the Formula Student racing competition
             </p>
 
             <div className="mt-10">
-              <Button asChild size="lg" className="bg-oxford-blue hover:bg-oxford-royal text-white">
+              <Button asChild size="lg" className="bg-white/90 hover:bg-white text-oxford-blue font-semibold">
                 <Link href="/team">MEET the team</Link>
               </Button>
             </div>
+
+            {/* Scroll down indicator */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+              <div className="animate-bounce">
+                <svg
+                  className="w-6 h-6 text-white/70"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </VideoBackground>
 
       {/* What is Oxford Uni Racing Section */}
       <section className="py-16 bg-gray-50">
