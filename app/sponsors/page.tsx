@@ -15,17 +15,16 @@ export default function SponsorsPage() {
   return (
     <div className="py-16 sm:py-24">
       <div className="container-custom">
-        <div className="mb-16">
-          <SectionTitle
-            title="OUR SPONSORS"
-            subtitle="OUR SPONSORS RACE WITH US. Their support enables us to push the boundaries of engineering innovation and compete at the highest level of student motorsport. When we win, our sponsors win."
-          />
-        </div>
-
-        {/* Introduction */}
         <div className="mb-16 text-center">
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are grateful to work with these outstanding organizations who share our commitment to engineering excellence and innovation.
+          <h1 className="text-4xl font-bold mb-6 text-oxford-blue">OUR SPONSORS</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
+            <strong>When we win, our sponsors win.</strong>
+          </p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            It is thanks to the ongoing support from our sponsors that the Oxford University Racing
+            team exists as a cutting-edge technical and creative project space for future leading
+            engineers. Their resources allow us to set ourselves apart from the crowd, and we very
+            much consider them an essential part of our team.
           </p>
         </div>
 

@@ -22,11 +22,14 @@ export default function TeamPage() {
   return (
     <div className="py-16 sm:py-24">
       <div className="container-custom">
-        <div className="mb-16">
-          <SectionTitle
-            title="MEET THE TEAM"
-            subtitle="Oxford University Racing is a student-run organization with over 100 members from across the University of Oxford. We are divided into specialized sub-teams, each focused on different aspects of designing and building our Formula Student race car."
-          />
+        <div className="mb-16 text-center">
+          <h1 className="text-4xl font-bold mb-6 text-oxford-blue">MEET THE TEAM</h1>
+          <p className="text-xl text-gray-600 mb-4">
+            Oxford University Racing is a <strong>100% student-run</strong> organization with over <strong>100 students</strong> from across the University of Oxford.
+          </p>
+          <p className="text-lg text-gray-600">
+            We are divided into specialized sub-teams, each focused on different aspects of designing and building our Formula Student race car.
+          </p>
         </div>
 
         {/* Leadership Team */}
