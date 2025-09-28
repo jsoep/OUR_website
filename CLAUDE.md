@@ -29,16 +29,23 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 6. **Review changes**: `git diff` to review what was changed
 7. **Stage changes**: `git add .` to stage all changes
 8. **Commit with message**: `git commit -m "Descriptive commit message"`
-9. **Push immediately**: `git push origin main` - NEVER leave unpushed commits
+9. **Create feature branch and push**:
+   - `git checkout -b feature/branch-name` (if not already on feature branch)
+   - `git push origin feature/branch-name` - Push to feature branch for free preview
 10. **Verify push**: `git status` should show "working tree clean"
+
+#### FOR PRODUCTION DEPLOYMENT (ONLY WHEN EXPLICITLY REQUESTED):
+11. **Switch to main**: `git checkout main`
+12. **Merge feature**: `git merge feature/branch-name`
+13. **Push to production**: `git push origin main` - This triggers production deploy (costs credits)
 
 **ABSOLUTE REQUIREMENTS:**
 - NEVER start work without checking `git status` first
-- ALWAYS push changes immediately after committing
-- NO exceptions to this workflow - follow it for every single change
+- ALWAYS push to feature branches first (free deploy previews)
+- ONLY push to main when explicitly asked to deploy to production
 - If git status shows uncommitted changes, resolve them before starting new work
 
-This ensures the site remains functional and all changes are properly deployed.
+This ensures cost-effective development with free preview deploys and controlled production releases.
 
 ### Local CMS Development
 **To test CMS locally:**

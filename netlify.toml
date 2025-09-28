@@ -6,6 +6,18 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Production deploys (15 credits each) - only for main branch
+[context.production]
+  command = "npm run build"
+
+# Deploy previews (0 credits) - for PRs
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploys (0 credits) - for feature branches
+[context.branch-deploy]
+  command = "npm run build"
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
