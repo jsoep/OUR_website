@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -42,11 +42,35 @@ export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const pathname = usePathname()
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === href
     return pathname.startsWith(href)
   }
+
+  const handleMouseEnter = (itemTitle: string) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+    setOpenDropdown(itemTitle)
+  }
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null)
+    }, 150) // 150ms delay to allow mouse movement to dropdown
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <nav className="relative">
@@ -56,8 +80,8 @@ export default function Navigation() {
           <div
             key={item.title}
             className="relative"
-            onMouseEnter={() => item.children && setOpenDropdown(item.title)}
-            onMouseLeave={() => setOpenDropdown(null)}
+            onMouseEnter={() => item.children && handleMouseEnter(item.title)}
+            onMouseLeave={handleMouseLeave}
           >
             <Link
               href={item.href}
@@ -88,7 +112,7 @@ export default function Navigation() {
 
             {/* Dropdown Menu */}
             {item.children && openDropdown === item.title && (
-              <div className="absolute left-0 top-full z-50 mt-2 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5">
+              <div className="absolute left-0 top-full z-50 w-48 rounded-md bg-white py-2 shadow-lg ring-1 ring-black ring-opacity-5">
                 {item.children.map((child) => (
                   <Link
                     key={child.title}
