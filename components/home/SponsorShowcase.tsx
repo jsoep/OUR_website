@@ -45,40 +45,55 @@ export default function SponsorShowcase({ sponsors }: SponsorShowcaseProps) {
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center mb-12">
+        <div className="space-y-12 mb-12">
           {displaySponsors.map((sponsor) => (
             <div
               key={sponsor.slug}
-              className="group flex items-center justify-center"
+              className="border-b border-gray-200 pb-8 last:border-0 last:pb-0"
             >
-              {sponsor.website ? (
-                <a
-                  href={sponsor.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full"
-                >
-                  <div className="relative overflow-hidden rounded-lg bg-white p-6 shadow-sm transition-all group-hover:shadow-md h-24">
-                    <Image
-                      src={sponsor.logo}
-                      alt={`${sponsor.name} logo`}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                      className="object-contain transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                </a>
-              ) : (
-                <div className="relative overflow-hidden rounded-lg bg-white p-6 shadow-sm h-24 w-full">
-                  <Image
-                    src={sponsor.logo}
-                    alt={`${sponsor.name} logo`}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                    className="object-contain"
-                  />
+              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+                {/* Logo */}
+                <div className="flex-shrink-0">
+                  {sponsor.website ? (
+                    <a
+                      href={sponsor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <div className="relative w-40 h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow">
+                        <Image
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 160px"
+                          className="object-contain"
+                        />
+                      </div>
+                    </a>
+                  ) : (
+                    <div className="relative w-40 h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-3">
+                      <Image
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} logo`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 160px"
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
+
+                {/* Content */}
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-oxford-blue mb-2">{sponsor.name}</h3>
+                  {sponsor.description && (
+                    <div className="text-gray-600 text-sm">
+                      <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           ))}
         </div>

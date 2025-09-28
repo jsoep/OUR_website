@@ -33,25 +33,62 @@ export default function SponsorsPage() {
           {sponsors.length > 0 ? (
             sponsors.map((sponsor) => (
               <div key={sponsor.slug} className="border-b border-gray-200 pb-12 last:border-0 last:pb-0">
-                <h3 className="text-2xl font-bold text-oxford-blue mb-4">{sponsor.name}</h3>
-                <div className="prose max-w-none text-gray-600">
-                  {sponsor.description && (
-                    <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
-                  )}
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-8">
+                  {/* Logo */}
+                  <div className="flex-shrink-0">
+                    {sponsor.website ? (
+                      <a
+                        href={sponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <div className="relative w-48 h-24 bg-white rounded-lg shadow-sm border border-gray-100 p-4 hover:shadow-md transition-shadow">
+                          <Image
+                            src={sponsor.logo}
+                            alt={`${sponsor.name} logo`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 192px"
+                            className="object-contain"
+                          />
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="relative w-48 h-24 bg-white rounded-lg shadow-sm border border-gray-100 p-4">
+                        <Image
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 192px"
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-oxford-blue mb-4">{sponsor.name}</h3>
+                    <div className="prose max-w-none text-gray-600 mb-4">
+                      {sponsor.description && (
+                        <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
+                      )}
+                    </div>
+                    {sponsor.website && (
+                      <a
+                        href={sponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center text-oxford-blue hover:text-accent-red font-medium transition-colors"
+                      >
+                        Visit Website
+                        <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
-                {sponsor.website && (
-                  <a
-                    href={sponsor.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-oxford-blue hover:text-accent-red font-medium mt-4 transition-colors"
-                  >
-                    Visit Website
-                    <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
-                )}
               </div>
             ))
           ) : (
