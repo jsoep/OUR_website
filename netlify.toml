@@ -28,8 +28,3 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
-
-  [plugins.inputs]
-  # Enable experimental features for forms
-  # Note: This configuration may change in future versions
-  buildCommand = "npm run build"
