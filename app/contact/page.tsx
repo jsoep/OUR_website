@@ -13,8 +13,8 @@ export default function ContactPage() {
       <div className="container-custom">
         <div className="text-center mb-16">
           <SectionTitle
-            title="Contact Us"
-            subtitle="Get in touch with Oxford University Racing for partnerships, recruitment, or general inquiries."
+            title="Get in Touch"
+            subtitle="We are always happy to hear from you"
             centered
           />
         </div>
@@ -26,16 +26,16 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
                   <span>📧</span>
-                  <span>General Inquiries</span>
+                  <span>General Enquiries</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-gray-600 mb-2">For general questions and information</p>
                 <a
-                  href="mailto:contact@oxforduniracing.com"
+                  href="mailto:our@eng.ox.ac.uk"
                   className="text-accent-red hover:underline font-medium"
                 >
-                  contact@oxforduniracing.com
+                  our@eng.ox.ac.uk
                 </a>
               </CardContent>
             </Card>
@@ -43,17 +43,17 @@ export default function ContactPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <span>🤝</span>
-                  <span>Partnerships & Sponsorship</span>
+                  <span>👑</span>
+                  <span>Team Leader</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-2">Interested in partnering with us?</p>
+                <p className="text-gray-600 mb-2">Thomas Ancill</p>
                 <a
-                  href="mailto:partnerships@oxforduniracing.com"
+                  href="mailto:our@eng.ox.ac.uk"
                   className="text-accent-red hover:underline font-medium"
                 >
-                  partnerships@oxforduniracing.com
+                  our@eng.ox.ac.uk
                 </a>
               </CardContent>
             </Card>
@@ -66,12 +66,12 @@ export default function ContactPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-2">Interested in joining our team?</p>
+                <p className="text-gray-600 mb-2">Team admissions mainly during weeks 0-1 of Michaelmas Term</p>
                 <a
-                  href="mailto:recruitment@oxforduniracing.com"
+                  href="mailto:our@eng.ox.ac.uk"
                   className="text-accent-red hover:underline font-medium"
                 >
-                  recruitment@oxforduniracing.com
+                  our@eng.ox.ac.uk
                 </a>
               </CardContent>
             </Card>
@@ -105,11 +105,24 @@ export default function ContactPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form className="space-y-4">
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                  className="space-y-4"
+                >
+                  <input type="hidden" name="form-name" value="contact" />
+                  <div style={{ display: 'none' }}>
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </div>
+
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
-                        First Name
+                        First Name *
                       </label>
                       <input
                         type="text"
@@ -121,7 +134,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
-                        Last Name
+                        Last Name *
                       </label>
                       <input
                         type="text"
@@ -135,7 +148,7 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                      Email
+                      Email Address *
                     </label>
                     <input
                       type="email"
@@ -148,26 +161,21 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">
-                      Subject
+                      Subject *
                     </label>
-                    <select
+                    <input
+                      type="text"
                       id="subject"
                       name="subject"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-oxford-blue focus:border-transparent"
+                      placeholder="Enter your subject"
                       required
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="recruitment">Join the Team</option>
-                      <option value="partnership">Partnership/Sponsorship</option>
-                      <option value="media">Media Inquiry</option>
-                      <option value="other">Other</option>
-                    </select>
+                    />
                   </div>
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                      Message
+                      Message *
                     </label>
                     <textarea
                       id="message"
@@ -191,10 +199,37 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Social Media */}
+        {/* Collaborate Section */}
         <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-oxford-blue mb-6">Follow Us</h3>
+          <Card className="bg-oxford-blue text-white">
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold mb-4">Collaborate</h3>
+              <p className="text-lg mb-6">Interested in sponsoring or collaborating with Oxford University Racing?</p>
+              <a
+                href="/sponsors"
+                className="inline-block bg-accent-red text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors"
+              >
+                Become a Sponsor
+              </a>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Connect - Social Media */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold text-oxford-blue mb-6">Connect</h3>
           <div className="flex justify-center space-x-6">
+            <a
+              href="https://facebook.com/oxforduniracing"
+              className="text-gray-600 hover:text-accent-red transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="sr-only">Facebook</span>
+              <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
             <a
               href="https://instagram.com/oxforduniracing"
               className="text-gray-600 hover:text-accent-red transition-colors"
@@ -204,17 +239,6 @@ export default function ContactPage() {
               <span className="sr-only">Instagram</span>
               <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM12 18.15c-3.404 0-6.15-2.746-6.15-6.15s2.746-6.15 6.15-6.15 6.15 2.746 6.15 6.15-2.746 6.15-6.15 6.15zm6.857-13.006a1.43 1.43 0 11-2.86 0 1.43 1.43 0 012.86 0zm-2.156 2.853c-.855-.191-1.79-.3-2.701-.3-4.09 0-7.404 3.315-7.404 7.404 0 .911.109 1.846.3 2.701.855.191 1.79.3 2.701.3 4.09 0 7.404-3.315 7.404-7.404 0-.911-.109-1.846-.3-2.701z"/>
-              </svg>
-            </a>
-            <a
-              href="https://linkedin.com/company/oxforduniracing"
-              className="text-gray-600 hover:text-accent-red transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">LinkedIn</span>
-              <svg className="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </a>
             <a
