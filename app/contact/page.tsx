@@ -8,9 +8,20 @@ export const metadata: Metadata = {
 }
 
 export default function ContactPage() {
+
   return (
-    <div className="py-16 sm:py-24">
-      <div className="container-custom">
+    <>
+      {/* Hidden form for Netlify detection */}
+      <form name="contact" data-netlify="true" hidden>
+        <input type="text" name="firstName" />
+        <input type="text" name="lastName" />
+        <input type="email" name="email" />
+        <input type="text" name="subject" />
+        <textarea name="message"></textarea>
+      </form>
+
+      <div className="py-16 sm:py-24">
+        <div className="container-custom">
         <div className="text-center mb-16">
           <SectionTitle
             title="Get in Touch"
@@ -109,7 +120,7 @@ export default function ContactPage() {
                   name="contact"
                   method="POST"
                   data-netlify="true"
-                  netlify-honeypot="bot-field"
+                  data-netlify-honeypot="bot-field"
                   className="space-y-4"
                 >
                   <input type="hidden" name="form-name" value="contact" />
@@ -256,5 +267,6 @@ export default function ContactPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
