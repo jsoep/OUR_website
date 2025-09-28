@@ -37,7 +37,10 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 #### FOR PRODUCTION DEPLOYMENT (ONLY WHEN EXPLICITLY REQUESTED):
 11. **Switch to main**: `git checkout main`
 12. **Merge feature**: `git merge feature/branch-name`
-13. **Push to production**: `git push origin main` - This triggers production deploy (costs credits)
+13. **Push to main**: `git push origin main` - This does NOT auto-deploy
+14. **Manual production deploy**: Use Netlify dashboard or CLI:
+    - Dashboard: Site → Deploys → "Deploy site" → Deploy from production branch
+    - CLI: `netlify deploy --prod` (requires netlify CLI)
 
 **ABSOLUTE REQUIREMENTS:**
 - NEVER start work without checking `git status` first
@@ -45,7 +48,7 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 - ONLY push to main when explicitly asked to deploy to production
 - If git status shows uncommitted changes, resolve them before starting new work
 
-This ensures cost-effective development with free preview deploys and controlled production releases.
+This ensures cost-effective development with free preview deploys and manual production releases only when needed.
 
 ### Local CMS Development
 **To test CMS locally:**

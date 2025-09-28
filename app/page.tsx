@@ -57,40 +57,82 @@ export default function HomePage() {
       </VideoBackground>
 
       {/* What is Oxford Uni Racing Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-8 text-oxford-blue">What is Oxford Uni Racing?</h2>
-            <div className="prose prose-lg text-gray-600">
-              <p className="mb-6">
-                The proving ground for the next generation of world class engineers, Formula Student
-                is an internationally renowned student motorsport competition. Student teams from around
-                the world compete to design and build a winning race car.
-              </p>
-              <p>
-                Established in 2018 and made up of over 100 students, Oxford University Racing (OUR)
-                is the official Formula Student team of the University of Oxford.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left side - Image */}
+            <div className="order-2 lg:order-1">
+              <Image
+                src="/images/general/IMG_1004.JPG"
+                alt="Oxford University Racing team with their Formula Student car"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg w-full h-auto"
+              />
+            </div>
+
+            {/* Right side - Content */}
+            <div className="order-1 lg:order-2">
+              <h2 className="text-4xl font-bold mb-8 text-oxford-blue text-center">What is Oxford Uni Racing?</h2>
+              <div className="text-lg text-gray-600 space-y-6 text-center">
+                <p>
+                  The proving ground for the next generation of world class engineers, Formula Student is an
+                  internationally renowned student motorsport competition. Student teams from around
+                  the world compete to design and build a winning race car.
+                </p>
+                <p className="font-semibold text-oxford-blue">
+                  Established in 2018 and made up of over 100 students, Oxford University Racing (OUR) is the
+                  official Formula Student team of the University of Oxford.
+                </p>
+                <div className="pt-6">
+                  <Button asChild>
+                    <Link href="/team" className="inline-block">
+                      MEET THE TEAM
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* University of Oxford Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold mb-8 text-oxford-blue">University of Oxford</h2>
-            <div className="prose prose-lg text-gray-600">
-              <p className="mb-6">
-                The OUR team consists of students from across the University of Oxford. We are proud
-                to be supported by the University's world-leading Department of Engineering Science,
-                which you can learn more about via the link below.
-              </p>
-              <p>
-                Please note that visits to our workshop at the department are by appointment only -
-                kindly use the contact tab to arrange.
-              </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+            {/* Left side - Content */}
+            <div className="order-1">
+              <h2 className="text-4xl font-bold mb-8 text-oxford-blue text-center">University of Oxford</h2>
+              <div className="text-lg text-gray-600 space-y-6 text-center">
+                <p>
+                  The OUR team consists of students from across the University of Oxford. We are proud
+                  to be supported by the University's world-leading Department of Engineering Science,
+                  which you can learn more about via the link below.
+                </p>
+                <p>
+                  Please note that visits to our workshop at the department are by appointment only -
+                  kindly use the contact tab to arrange.
+                </p>
+                <div className="pt-6">
+                  <Button asChild>
+                    <Link href="https://www.eng.ox.ac.uk/" className="inline-block" target="_blank" rel="noopener noreferrer">
+                      ENGINEERING AT OXFORD
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side - Image */}
+            <div className="order-2">
+              <Image
+                src="/images/general/301375251_415386697249278_5876784168922633401_n.jpg"
+                alt="Oxford University Department of Engineering Science building"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg w-full h-auto"
+              />
             </div>
           </div>
         </div>
