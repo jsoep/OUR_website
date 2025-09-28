@@ -31,6 +31,7 @@ export interface Sponsor {
   website?: string
   description?: string
   since?: number
+  order?: number
   slug: string
 }
 

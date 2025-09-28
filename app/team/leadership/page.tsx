@@ -3,8 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getTeamMembersBySubteam } from '@/lib/content'
 import SectionTitle from '@/components/common/SectionTitle'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card'
-import Button from '@/components/common/Button'
 
 export const metadata: Metadata = {
   title: 'Leadership Team',
@@ -33,33 +31,33 @@ export default function LeadershipTeamPage() {
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {teamMembers.map((member) => (
-            <Card key={member.slug} className="group hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
+        <div className="flex justify-center">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+            {teamMembers.map((member) => (
+              <div key={member.slug} className="border border-gray-300 bg-white rounded-lg shadow-sm p-4 group hover:shadow-lg transition-shadow">
                 {member.image && (
-                  <div className="relative w-24 h-24 mx-auto mb-4">
+                  <div className="relative w-full h-48 overflow-hidden rounded-t-lg mb-4">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover rounded-full"
+                      className="object-cover"
                     />
                   </div>
                 )}
-                <CardTitle className="text-lg">{member.name}</CardTitle>
-                <CardDescription>{member.role}</CardDescription>
-                <div className="text-sm text-gray-500">
-                  {member.course} • Year {member.year}
+                <div className="text-center">
+                  <h3 className="text-lg font-semibold">{member.name}</h3>
+                  <p className="text-sm text-gray-600">{member.role}</p>
+                  <div className="text-sm text-gray-500">
+                    {member.course} • Year {member.year}
+                  </div>
+                  <div className="text-gray-600 text-sm mt-2">
+                    {member.bio}
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-gray-600 text-sm line-clamp-3">
-                  {member.bio}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
         {teamMembers.length === 0 && (

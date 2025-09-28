@@ -45,42 +45,60 @@ export default function SponsorShowcase({ sponsors }: SponsorShowcaseProps) {
           />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center mb-12">
-          {displaySponsors.map((sponsor) => (
-            <div
-              key={sponsor.slug}
-              className="group flex items-center justify-center"
-            >
-              {sponsor.website ? (
-                <a
-                  href={sponsor.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full"
-                >
-                  <div className="relative overflow-hidden rounded-lg bg-white p-6 shadow-sm transition-all group-hover:shadow-md h-24">
-                    <Image
-                      src={sponsor.logo}
-                      alt={`${sponsor.name} logo`}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                      className="object-contain transition-transform group-hover:scale-105"
-                    />
+        <div className="space-y-16 mb-12">
+          {displaySponsors.map((sponsor, index) => {
+            const isEven = index % 2 === 0
+            return (
+              <div
+                key={sponsor.slug}
+                className="border-b border-gray-200 pb-12 last:border-0 last:pb-0"
+              >
+                <div className={`flex flex-col lg:flex-row items-start lg:items-center gap-8 ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+                  {/* Logo */}
+                  <div className="flex-shrink-0">
+                    {sponsor.website ? (
+                      <a
+                        href={sponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <div className="relative w-52 h-28 bg-white rounded-lg shadow-sm border border-gray-100 p-4 hover:shadow-md transition-shadow">
+                          <Image
+                            src={sponsor.logo}
+                            alt={`${sponsor.name} logo`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 208px"
+                            className="object-contain"
+                          />
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="relative w-52 h-28 bg-white rounded-lg shadow-sm border border-gray-100 p-4">
+                        <Image
+                          src={sponsor.logo}
+                          alt={`${sponsor.name} logo`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 208px"
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
                   </div>
-                </a>
-              ) : (
-                <div className="relative overflow-hidden rounded-lg bg-white p-6 shadow-sm h-24 w-full">
-                  <Image
-                    src={sponsor.logo}
-                    alt={`${sponsor.name} logo`}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-                    className="object-contain"
-                  />
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-oxford-blue mb-3">{sponsor.name}</h3>
+                    {sponsor.description && (
+                      <div className="text-gray-600 text-base prose max-w-none">
+                        <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
+                      </div>
+                    )}
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            )
+          })}
         </div>
 
         <div className="text-center">

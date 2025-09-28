@@ -161,13 +161,19 @@ export function getSponsors(): Sponsor[] {
         website: data.website,
         description: content,
         since: data.since,
+        order: parseInt(data.order) || 999,
         slug: filename.replace(/\.md$/, ''),
       }
       sponsors.push(sponsor)
     }
   })
 
-  return sponsors.sort((a, b) => a.name.localeCompare(b.name))
+  return sponsors.sort((a, b) => {
+    if (a.order !== b.order) {
+      return (a.order || 999) - (b.order || 999)
+    }
+    return a.name.localeCompare(b.name)
+  })
 }
 
 export function getSponsor(slug: string): Sponsor | null {

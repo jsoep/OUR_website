@@ -53,7 +53,7 @@ collections:
       - { label: "LinkedIn", name: "linkedin", widget: "string", required: false, hint: "LinkedIn profile URL (optional)" }
       - { label: "Year of Study", name: "year", widget: "number", value_type: "int", min: 1, max: 5, hint: "Current year of study" }
       - { label: "Course", name: "course", widget: "string", hint: "Degree program" }
-      - { label: "Bio", name: "body", widget: "markdown", hint: "Brief background, interests, and role description" }
+      - { label: "Bio", name: "body", widget: "text", hint: "Brief background, interests, and role description (max 200 characters)", pattern: ["^.{1,200}$", "Please keep bio under 200 characters"] }
 
   - name: "sponsors"
     label: "Partners"
@@ -65,6 +65,7 @@ collections:
       - { label: "Logo", name: "logo", widget: "image", hint: "Upload company logo (PNG/JPG, high resolution recommended)" }
       - { label: "Website", name: "website", widget: "string", required: false, hint: "Company website URL (optional)" }
       - { label: "Partner Since", name: "since", widget: "number", value_type: "int", required: false, hint: "Year partnership began (optional)" }
+      - { label: "Display Position", name: "order", widget: "select", options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], default: "1", hint: "Position on the page (1 = first, 2 = second, etc.). If multiple sponsors have the same position, they will be sorted alphabetically." }
       - { label: "Description", name: "body", widget: "markdown", hint: "Brief description of the organization and partnership" }
 
   - name: "pages"

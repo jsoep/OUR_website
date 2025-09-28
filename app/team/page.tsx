@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getTeamMembers, getTeamMembersBySubteam } from '@/lib/content'
 import SectionTitle from '@/components/common/SectionTitle'
 
@@ -8,9 +9,54 @@ export const metadata: Metadata = {
   description: 'Meet the talented individuals behind Oxford University Racing.',
 }
 
+// Helper component to display team member cards
+function TeamMemberCards({ members, maxMembers = 3 }: { members: any[], maxMembers?: number }) {
+  const displayMembers = members.slice(0, maxMembers)
+
+
+  if (displayMembers.length === 0) {
+    return (
+      <div className="text-center bg-gray-50 rounded-lg p-8 text-gray-500">
+        Team member information will appear here once added through the CMS
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex justify-center mb-6">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+        {displayMembers.map((member) => (
+          <div key={member.slug} className="border border-gray-300 bg-white rounded-lg shadow-sm p-4">
+            {member.image && (
+              <div className="relative w-full h-48 overflow-hidden rounded-t-lg mb-4">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            )}
+            <div className="text-center">
+              <h3 className="text-lg font-semibold">{member.name}</h3>
+              <p className="text-sm text-gray-600">{member.role}</p>
+              <div className="text-sm text-gray-500">
+                {member.course} • Year {member.year}
+              </div>
+              <div className="text-gray-600 text-sm mt-2">
+                {member.bio}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function TeamPage() {
   const teamMembers = getTeamMembers()
-  
+
   // Get members for each subteam
   const leadershipMembers = getTeamMembersBySubteam('leadership')
   const aerodynamicsMembers = getTeamMembersBySubteam('aerodynamics')
@@ -36,8 +82,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Leadership Team</h2>
-            <Link 
-              href="/team/leadership" 
+            <Link
+              href="/team/leadership"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -46,8 +92,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Leadership Team is responsible for the strategic direction of the project, ensuring that all sub-teams work together cohesively to deliver an exceptional race car. They manage resources, coordinate with sponsors, and represent the team at events.
           </p>
+          <TeamMemberCards members={leadershipMembers} maxMembers={6} />
           <div className="text-sm text-gray-500">
-            {leadershipMembers.length} members
+            {leadershipMembers.length} total members
           </div>
         </div>
 
@@ -55,8 +102,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Bodywork and Cooling Team</h2>
-            <Link 
-              href="/team/aerodynamics" 
+            <Link
+              href="/team/aerodynamics"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -65,8 +112,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Bodywork and Cooling Team focuses on optimizing airflow around and through the car. They use computational fluid dynamics (CFD) tools like Ansys to design bodywork that maximizes downforce while minimizing drag, and develop cooling systems to maintain optimal operating temperatures.
           </p>
+          <TeamMemberCards members={aerodynamicsMembers} />
           <div className="text-sm text-gray-500">
-            {aerodynamicsMembers.length} members
+            {aerodynamicsMembers.length} total members
           </div>
         </div>
 
@@ -74,8 +122,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Battery Team</h2>
-            <Link 
-              href="/team/electronics" 
+            <Link
+              href="/team/electronics"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -84,8 +132,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Battery Team is responsible for the design and integration of our high-performance battery pack. They work with industry-leading tools like MATLAB and Simulink to model cell behavior, develop battery management systems, and ensure safety and reliability in all conditions.
           </p>
+          <TeamMemberCards members={electronicsMembers.filter(m => m.role.toLowerCase().includes('battery'))} />
           <div className="text-sm text-gray-500">
-            {electronicsMembers.filter(m => m.role.toLowerCase().includes('battery')).length} members
+            {electronicsMembers.filter(m => m.role.toLowerCase().includes('battery')).length} total members
           </div>
         </div>
 
@@ -93,8 +142,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Chassis Team</h2>
-            <Link 
-              href="/team/chassis" 
+            <Link
+              href="/team/chassis"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -103,8 +152,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Chassis Team designs the structural backbone of our race car. Using SOLIDWORKS and other CAD tools, they create a lightweight yet incredibly strong frame that meets all Formula Student safety requirements while providing the foundation for all other systems.
           </p>
+          <TeamMemberCards members={chassisMembers} />
           <div className="text-sm text-gray-500">
-            {chassisMembers.length} members
+            {chassisMembers.length} total members
           </div>
         </div>
 
@@ -112,8 +162,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Powertrain Team</h2>
-            <Link 
-              href="/team/powertrain" 
+            <Link
+              href="/team/powertrain"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -122,8 +172,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Powertrain Team is responsible for maximizing the performance of our electric motor and drivetrain. They work on motor control, inverter design, and gear ratios to ensure our car delivers exceptional acceleration and top speed on the track.
           </p>
+          <TeamMemberCards members={powertrainMembers} />
           <div className="text-sm text-gray-500">
-            {powertrainMembers.length} members
+            {powertrainMembers.length} total members
           </div>
         </div>
 
@@ -131,8 +182,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Simulations Team</h2>
-            <Link 
-              href="/team/chassis" 
+            <Link
+              href="/team/chassis"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -141,8 +192,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Simulations Team uses advanced modeling and simulation tools to predict vehicle performance before physical testing. They analyze lap times, cornering speeds, and energy consumption to optimize our design decisions and validate our engineering approaches.
           </p>
+          <TeamMemberCards members={chassisMembers.filter(m => m.role.toLowerCase().includes('simulation'))} />
           <div className="text-sm text-gray-500">
-            {chassisMembers.filter(m => m.role.toLowerCase().includes('simulation')).length} members
+            {chassisMembers.filter(m => m.role.toLowerCase().includes('simulation')).length} total members
           </div>
         </div>
 
@@ -150,8 +202,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Electronics & Software Team</h2>
-            <Link 
-              href="/team/electronics" 
+            <Link
+              href="/team/electronics"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -160,8 +212,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Electronics & Software Team develops the control systems that bring our car to life. From the dashboard display to the motor controller, they write code and design circuits that monitor and manage every aspect of vehicle performance in real-time.
           </p>
+          <TeamMemberCards members={electronicsMembers.filter(m => !m.role.toLowerCase().includes('battery'))} />
           <div className="text-sm text-gray-500">
-            {electronicsMembers.length} members
+            {electronicsMembers.length} total members
           </div>
         </div>
 
@@ -169,8 +222,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Wheel Assembly Team</h2>
-            <Link 
-              href="/team/operations" 
+            <Link
+              href="/team/operations"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -179,8 +232,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Wheel Assembly Team is responsible for the design and integration of our suspension and steering systems. They work closely with the Chassis Team to ensure optimal handling characteristics and implement innovative solutions for wheel mounting and alignment.
           </p>
+          <TeamMemberCards members={operationsMembers.filter(m => m.role.toLowerCase().includes('wheel'))} />
           <div className="text-sm text-gray-500">
-            {operationsMembers.filter(m => m.role.toLowerCase().includes('wheel')).length} members
+            {operationsMembers.filter(m => m.role.toLowerCase().includes('wheel')).length} total members
           </div>
         </div>
 
@@ -188,8 +242,8 @@ export default function TeamPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-oxford-blue">Operations Team</h2>
-            <Link 
-              href="/team/operations" 
+            <Link
+              href="/team/operations"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
@@ -198,8 +252,9 @@ export default function TeamPage() {
           <p className="text-gray-600 mb-6">
             The Operations Team manages the logistics and manufacturing processes that keep our project running smoothly. From sourcing materials to organizing build schedules, they ensure that every team has what they need to succeed and that our car is built to the highest quality standards.
           </p>
+          <TeamMemberCards members={operationsMembers.filter(m => !m.role.toLowerCase().includes('wheel'))} />
           <div className="text-sm text-gray-500">
-            {operationsMembers.length} members
+            {operationsMembers.length} total members
           </div>
         </div>
 
