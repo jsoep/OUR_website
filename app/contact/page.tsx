@@ -26,7 +26,6 @@ export default function ContactPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <span>📧</span>
                   <span>General Enquiries</span>
                 </CardTitle>
               </CardHeader>
@@ -44,25 +43,6 @@ export default function ContactPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <span>👑</span>
-                  <span>Team Leader</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-2">Thomas Ancill</p>
-                <a
-                  href="mailto:our@eng.ox.ac.uk"
-                  className="text-accent-red hover:underline font-medium"
-                >
-                  our@eng.ox.ac.uk
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <span>👥</span>
                   <span>Join the Team</span>
                 </CardTitle>
               </CardHeader>
@@ -80,7 +60,6 @@ export default function ContactPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <span>📍</span>
                   <span>Location</span>
                 </CardTitle>
               </CardHeader>
