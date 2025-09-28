@@ -65,7 +65,7 @@ collections:
       - { label: "Logo", name: "logo", widget: "image", hint: "Upload company logo (PNG/JPG, high resolution recommended)" }
       - { label: "Website", name: "website", widget: "string", required: false, hint: "Company website URL (optional)" }
       - { label: "Partner Since", name: "since", widget: "number", value_type: "int", required: false, hint: "Year partnership began (optional)" }
-      - { label: "Display Order", name: "order", widget: "number", value_type: "int", default: 1, hint: "Order in which the sponsor appears (1 = first, 2 = second, etc.)" }
+      - { label: "Display Position", name: "order", widget: "select", options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], default: "1", hint: "Position on the page (1 = first, 2 = second, etc.). If multiple sponsors have the same position, they will be sorted alphabetically." }
       - { label: "Description", name: "body", widget: "markdown", hint: "Brief description of the organization and partnership" }
 
   - name: "pages"

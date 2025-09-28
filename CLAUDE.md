@@ -14,6 +14,7 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
+- `npm run reorder-sponsors` - Automatically reorder sponsors to eliminate gaps in numbering
 
 ### Git Workflow - MANDATORY BEFORE ANY CODE CHANGES
 **CRITICAL: Always follow this exact sequence for ANY code modifications:**
@@ -221,3 +222,44 @@ Components are organized by feature area:
 - Semantic HTML structure is maintained
 - Images include proper alt text
 - Color contrast meets accessibility standards
+
+## Sponsor Management
+
+### Sponsor Ordering System
+The website includes an advanced sponsor ordering system that allows precise control over sponsor display order:
+
+#### CMS Interface
+- Sponsors can be assigned positions 1-10 using the "Display Position" dropdown in the CMS
+- Position 1 = first sponsor, Position 2 = second sponsor, etc.
+- Multiple sponsors can have the same position (they'll be sorted alphabetically)
+
+#### Automatic Reordering
+After making changes to sponsor positions in the CMS, run the reordering script to ensure clean, sequential numbering:
+
+```bash
+npm run reorder-sponsors
+```
+
+**How it works:**
+1. Reads all sponsor files and their current positions
+2. Sorts sponsors by position, then alphabetically by name
+3. Reassigns positions sequentially (1, 2, 3, 4...)
+4. Updates the markdown files with new positions
+5. Displays a summary of changes made
+
+**Example Usage:**
+- You have sponsors at positions 1, 1, 3, 5
+- After running the script: positions become 1, 2, 3, 4
+- The script maintains the relative order while eliminating gaps
+
+#### Display Features
+- **Page-wide layout**: Sponsors display full-width with logo and content side-by-side
+- **Alternating design**: Even-positioned sponsors have logo on left, odd-positioned have logo on right
+- **Responsive**: On mobile devices, logos appear above text
+- **Large format**: Logos are prominently sized for maximum impact
+
+#### Technical Implementation
+- Sponsor data stored in `content/sponsors/` as markdown files
+- Order field in frontmatter controls display sequence
+- Automatic sorting in `lib/content.ts` by order then name
+- React components handle alternating layout logic

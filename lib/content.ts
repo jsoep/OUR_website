@@ -161,7 +161,7 @@ export function getSponsors(): Sponsor[] {
         website: data.website,
         description: content,
         since: data.since,
-        order: data.order || 999,
+        order: parseInt(data.order) || 999,
         slug: filename.replace(/\.md$/, ''),
       }
       sponsors.push(sponsor)
