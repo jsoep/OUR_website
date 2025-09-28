@@ -18,10 +18,10 @@ const matter = require('gray-matter')
 const sponsorsDir = path.join(process.cwd(), 'content', 'sponsors')
 
 function reorderSponsors() {
-  console.log('🔄 Starting sponsor reordering...')
+  console.log('🔄 Reordering sponsors...')
 
   if (!fs.existsSync(sponsorsDir)) {
-    console.log('❌ Sponsors directory not found')
+    console.log('⚠️  Sponsors directory not found, skipping reordering')
     return
   }
 
@@ -69,13 +69,9 @@ function reorderSponsors() {
   })
 
   if (changes === 0) {
-    console.log('✅ All sponsors are already properly ordered')
+    console.log('✅ Sponsors already properly ordered')
   } else {
-    console.log(`✅ Reordered ${changes} sponsors successfully`)
-    console.log('\n📋 Final order:')
-    sponsors.forEach((sponsor, index) => {
-      console.log(`  ${index + 1}. ${sponsor.data.name}`)
-    })
+    console.log(`✅ Reordered ${changes} sponsors`)
   }
 }
 

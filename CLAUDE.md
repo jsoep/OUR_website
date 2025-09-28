@@ -14,7 +14,7 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
-- `npm run reorder-sponsors` - Automatically reorder sponsors to eliminate gaps in numbering
+- `npm run reorder-sponsors` - Manually reorder sponsors (also runs automatically during build)
 
 ### Git Workflow - MANDATORY BEFORE ANY CODE CHANGES
 **CRITICAL: Always follow this exact sequence for ANY code modifications:**
@@ -234,11 +234,11 @@ The website includes an advanced sponsor ordering system that allows precise con
 - Multiple sponsors can have the same position (they'll be sorted alphabetically)
 
 #### Automatic Reordering
-After making changes to sponsor positions in the CMS, run the reordering script to ensure clean, sequential numbering:
+Sponsor positions are automatically reordered during the build process to ensure clean, sequential numbering. The reordering happens automatically when:
 
-```bash
-npm run reorder-sponsors
-```
+- Running `npm run build` (via prebuild hook)
+- Deploying to production (automatic during Netlify builds)
+- Running `npm run reorder-sponsors` manually
 
 **How it works:**
 1. Reads all sponsor files and their current positions
@@ -249,8 +249,13 @@ npm run reorder-sponsors
 
 **Example Usage:**
 - You have sponsors at positions 1, 1, 3, 5
-- After running the script: positions become 1, 2, 3, 4
+- After build/deployment: positions become 1, 2, 3, 4
 - The script maintains the relative order while eliminating gaps
+
+**Manual Usage (optional):**
+```bash
+npm run reorder-sponsors
+```
 
 #### Display Features
 - **Page-wide layout**: Sponsors display full-width with logo and content side-by-side
