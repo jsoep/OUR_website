@@ -45,57 +45,60 @@ export default function SponsorShowcase({ sponsors }: SponsorShowcaseProps) {
           />
         </div>
 
-        <div className="space-y-12 mb-12">
-          {displaySponsors.map((sponsor) => (
-            <div
-              key={sponsor.slug}
-              className="border-b border-gray-200 pb-8 last:border-0 last:pb-0"
-            >
-              <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
-                {/* Logo */}
-                <div className="flex-shrink-0">
-                  {sponsor.website ? (
-                    <a
-                      href={sponsor.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <div className="relative w-40 h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-3 hover:shadow-md transition-shadow">
+        <div className="space-y-16 mb-12">
+          {displaySponsors.map((sponsor, index) => {
+            const isEven = index % 2 === 0
+            return (
+              <div
+                key={sponsor.slug}
+                className="border-b border-gray-200 pb-12 last:border-0 last:pb-0"
+              >
+                <div className={`flex flex-col lg:flex-row items-start lg:items-center gap-8 ${isEven ? '' : 'lg:flex-row-reverse'}`}>
+                  {/* Logo */}
+                  <div className="flex-shrink-0">
+                    {sponsor.website ? (
+                      <a
+                        href={sponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <div className="relative w-52 h-28 bg-white rounded-lg shadow-sm border border-gray-100 p-4 hover:shadow-md transition-shadow">
+                          <Image
+                            src={sponsor.logo}
+                            alt={`${sponsor.name} logo`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 208px"
+                            className="object-contain"
+                          />
+                        </div>
+                      </a>
+                    ) : (
+                      <div className="relative w-52 h-28 bg-white rounded-lg shadow-sm border border-gray-100 p-4">
                         <Image
                           src={sponsor.logo}
                           alt={`${sponsor.name} logo`}
                           fill
-                          sizes="(max-width: 768px) 100vw, 160px"
+                          sizes="(max-width: 768px) 100vw, 208px"
                           className="object-contain"
                         />
                       </div>
-                    </a>
-                  ) : (
-                    <div className="relative w-40 h-20 bg-white rounded-lg shadow-sm border border-gray-100 p-3">
-                      <Image
-                        src={sponsor.logo}
-                        alt={`${sponsor.name} logo`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 160px"
-                        className="object-contain"
-                      />
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold text-oxford-blue mb-2">{sponsor.name}</h3>
-                  {sponsor.description && (
-                    <div className="text-gray-600 text-sm">
-                      <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
-                    </div>
-                  )}
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-oxford-blue mb-3">{sponsor.name}</h3>
+                    {sponsor.description && (
+                      <div className="text-gray-600 text-base prose max-w-none">
+                        <div dangerouslySetInnerHTML={{ __html: sponsor.description }} />
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         <div className="text-center">

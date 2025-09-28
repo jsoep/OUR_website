@@ -32,33 +32,35 @@ export default function ElectronicsTeamPage() {
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {teamMembers.map((member) => (
-            <Card key={member.slug} className="group hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
+        <div className="flex justify-center">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
+            {teamMembers.map((member) => (
+              <Card key={member.slug} className="group hover:shadow-lg transition-shadow">
                 {member.image && (
-                  <div className="relative w-24 h-24 mx-auto mb-4">
+                  <div className="relative w-full h-48 overflow-hidden rounded-t-lg">
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-cover rounded-full"
+                      className="object-cover"
                     />
                   </div>
                 )}
-                <CardTitle className="text-lg">{member.name}</CardTitle>
-                <CardDescription>{member.role}</CardDescription>
-                <div className="text-sm text-gray-500">
-                  {member.course} • Year {member.year}
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-gray-600 text-sm line-clamp-3">
-                  {member.bio}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader className="text-center">
+                  <CardTitle className="text-lg">{member.name}</CardTitle>
+                  <CardDescription>{member.role}</CardDescription>
+                  <div className="text-sm text-gray-500">
+                    {member.course} • Year {member.year}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-gray-600 text-sm line-clamp-3">
+                    {member.bio}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {teamMembers.length === 0 && (
