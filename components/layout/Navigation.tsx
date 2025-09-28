@@ -33,10 +33,6 @@ const navigationItems: NavigationItem[] = [
     href: '/sponsors',
   },
   {
-    title: 'About',
-    href: '/about',
-  },
-  {
     title: 'Contact',
     href: '/contact',
   },
