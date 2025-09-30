@@ -52,9 +52,9 @@ content:
   # Team Members
   - name: team
     label: Team Members
-    path: content/team
+    path: content/team/{subteam}
     type: collection
-    filename: "{name}"
+    filename: /{name}
     fields:
       - name: name
         label: Name
