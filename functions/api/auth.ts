@@ -10,7 +10,7 @@ export async function onRequest(context: any) {
   }
 
   // GitHub OAuth App credentials (these will be set as environment variables)
-  const clientId = env.GITHUB_OAUTH_CLIENT_ID;
+  const clientId = env.GITHUB_CLIENT_ID;
   const redirectUri = `${url.origin}/api/callback`;
 
   if (!clientId) {

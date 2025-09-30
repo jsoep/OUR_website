@@ -10,8 +10,8 @@ export async function onRequest(context: any) {
   }
 
   // GitHub OAuth App credentials
-  const clientId = env.GITHUB_OAUTH_CLIENT_ID;
-  const clientSecret = env.GITHUB_OAUTH_CLIENT_SECRET;
+  const clientId = env.GITHUB_CLIENT_ID;
+  const clientSecret = env.GITHUB_CLIENT_SECRET;
 
   if (!clientId || !clientSecret) {
     return new Response('OAuth not configured', { status: 500 });
