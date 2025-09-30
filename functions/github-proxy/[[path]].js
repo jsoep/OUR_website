@@ -22,18 +22,16 @@ export async function onRequest(context) {
   // Get the authorization token from the request
   const authHeader = request.headers.get('Authorization');
 
-  if (!authHeader) {
-    return new Response(JSON.stringify({ message: 'Unauthorized' }), {
-      status: 401,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
   // Proxy the request to GitHub API
   const githubUrl = `https://api.github.com/${apiPath}${url.search}`;
 
   const githubHeaders = new Headers();
-  githubHeaders.set('Authorization', authHeader);
+
+  // Only add Authorization if present (allows unauthenticated requests for public data)
+  if (authHeader) {
+    githubHeaders.set('Authorization', authHeader);
+  }
+
   githubHeaders.set('Accept', 'application/vnd.github.v3+json');
   githubHeaders.set('User-Agent', 'Decap-CMS-Proxy');
 
