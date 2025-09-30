@@ -71,12 +71,13 @@ content:
         type: select
         required: true
         options:
-          - leadership
-          - aerodynamics
-          - chassis
-          - powertrain
-          - electronics
-          - operations
+          values:
+            - leadership
+            - aerodynamics
+            - chassis
+            - powertrain
+            - electronics
+            - operations
         description: Which sub-team the member belongs to
       - name: image
         label: Profile Image
@@ -142,16 +143,17 @@ content:
         required: true
         default: "1"
         options:
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-          - "5"
-          - "6"
-          - "7"
-          - "8"
-          - "9"
-          - "10"
+          values:
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+            - "10"
         description: Position on the page (1 = first, 2 = second, etc.). If multiple sponsors have the same position, they will be sorted alphabetically.
       - name: body
         label: Description
