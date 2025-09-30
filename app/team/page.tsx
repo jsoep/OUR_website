@@ -59,10 +59,11 @@ export default function TeamPage() {
 
   // Get members for each subteam
   const leadershipMembers = getTeamMembersBySubteam('leadership')
-  const bodyworkMembers = getTeamMembersBySubteam('bodywork and cooling')
-  const batteryMembers = getTeamMembersBySubteam('battery')
+  const bodyworkMembers = getTeamMembersBySubteam('bodywork and aerodynamics')
+  const coolingMembers = getTeamMembersBySubteam('cooling')
   const chassisMembers = getTeamMembersBySubteam('chassis')
   const powertrainMembers = getTeamMembersBySubteam('powertrain')
+  const batteryMembers = getTeamMembersBySubteam('battery')
   const simulationsMembers = getTeamMembersBySubteam('simulations')
   const electronicsMembers = getTeamMembersBySubteam('electronics')
   const wheelAssemblyMembers = getTeamMembersBySubteam('wheel assembly')
@@ -101,23 +102,43 @@ export default function TeamPage() {
           </div>
         </div>
 
-        {/* Bodywork and Cooling Team */}
+        {/* Bodywork and Aerodynamics Team */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-oxford-blue">Bodywork and Cooling Team</h2>
+            <h2 className="text-2xl font-bold text-oxford-blue">Bodywork and Aerodynamics Team</h2>
             <Link
-              href="/team/bodywork-and-cooling"
+              href="/team/bodywork-and-aerodynamics"
               className="text-oxford-blue hover:text-accent-red transition-colors"
             >
               View all members →
             </Link>
           </div>
           <p className="text-gray-600 mb-6">
-            The Bodywork and Cooling Team focuses on optimizing airflow around and through the car. They use computational fluid dynamics (CFD) tools like Ansys to design bodywork that maximizes downforce while minimizing drag, and develop cooling systems to maintain optimal operating temperatures.
+            The Bodywork and Aerodynamics Team focuses on optimizing airflow around the car. They use computational fluid dynamics (CFD) tools like Ansys to design bodywork that maximizes downforce while minimizing drag, creating a sleek and efficient race car profile.
           </p>
           <TeamMemberCards members={bodyworkMembers} />
           <div className="text-sm text-gray-500">
             {bodyworkMembers.length} total members
+          </div>
+        </div>
+
+        {/* Cooling Team */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-oxford-blue">Cooling Team</h2>
+            <Link
+              href="/team/cooling"
+              className="text-oxford-blue hover:text-accent-red transition-colors"
+            >
+              View all members →
+            </Link>
+          </div>
+          <p className="text-gray-600 mb-6">
+            The Cooling Team develops thermal management systems to maintain optimal operating temperatures for all vehicle components. They design radiators, cooling ducts, and airflow paths to ensure reliable performance in all conditions.
+          </p>
+          <TeamMemberCards members={coolingMembers} />
+          <div className="text-sm text-gray-500">
+            {coolingMembers.length} total members
           </div>
         </div>
 

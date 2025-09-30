@@ -72,12 +72,12 @@ content:
         options:
           values:
             - leadership
-            - aerodynamics
+            - bodywork and aerodynamics
+            - cooling
             - chassis
             - powertrain
             - electronics
             - operations
-            - bodywork and cooling
             - battery
             - simulations
             - wheel assembly

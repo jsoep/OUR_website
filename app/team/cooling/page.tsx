@@ -6,12 +6,12 @@ import SectionTitle from '@/components/common/SectionTitle'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/common/Card'
 
 export const metadata: Metadata = {
-  title: 'Bodywork and Cooling Team',
-  description: 'Meet the bodywork and cooling team behind Oxford University Racing.',
+  title: 'Cooling Team',
+  description: 'Meet the cooling team behind Oxford University Racing.',
 }
 
-export default function BodyworkAndCoolingTeamPage() {
-  const teamMembers = getTeamMembersBySubteam('bodywork and cooling')
+export default function CoolingTeamPage() {
+  const teamMembers = getTeamMembersBySubteam('cooling')
 
   return (
     <div className="py-16 sm:py-24">
@@ -27,8 +27,8 @@ export default function BodyworkAndCoolingTeamPage() {
             Back to Team
           </Link>
           <SectionTitle
-            title="Bodywork and Cooling Team"
-            subtitle="Airflow optimization and thermal management"
+            title="Cooling Team"
+            subtitle="Thermal management and temperature control"
           />
         </div>
 
