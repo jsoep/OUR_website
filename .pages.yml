@@ -1,0 +1,176 @@
+# Pages CMS Configuration
+# This file configures the content management system for the Oxford University Racing website
+
+# Media configuration
+media:
+  input: public/images
+  output: /images
+
+# Content collections
+content:
+  # News Articles
+  - name: news
+    label: News Articles
+    path: content/news
+    type: collection
+    filename: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: author
+        label: Author
+        type: string
+        required: true
+      - name: featuredImage
+        label: Featured Image
+        type: image
+        required: false
+      - name: excerpt
+        label: Excerpt
+        type: text
+        required: true
+        description: Brief summary (max 200 characters)
+      - name: tags
+        label: Tags
+        type: list
+        required: false
+      - name: featured
+        label: Featured
+        type: boolean
+        default: false
+      - name: body
+        label: Body
+        type: rich-text
+        required: true
+
+  # Team Members
+  - name: team
+    label: Team Members
+    path: content/team
+    type: collection
+    filename: "{{subteam}}/{{slug}}"
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+        description: Full name of team member
+      - name: role
+        label: Role
+        type: string
+        required: true
+        description: Position or title (e.g., Team Principal, Lead Engineer)
+      - name: subteam
+        label: Sub-team
+        type: select
+        required: true
+        options:
+          - leadership
+          - aerodynamics
+          - chassis
+          - powertrain
+          - electronics
+          - operations
+        description: Which sub-team the member belongs to
+      - name: image
+        label: Profile Image
+        type: image
+        required: false
+        description: Professional headshot (square format recommended)
+      - name: email
+        label: Email
+        type: string
+        required: false
+        description: Contact email (optional)
+      - name: linkedin
+        label: LinkedIn
+        type: string
+        required: false
+        description: LinkedIn profile URL (optional)
+      - name: year
+        label: Year of Study
+        type: number
+        required: true
+        description: Current year of study
+      - name: course
+        label: Course
+        type: string
+        required: true
+        description: Degree program
+      - name: body
+        label: Bio
+        type: text
+        required: true
+        description: Brief background, interests, and role description (max 200 characters)
+
+  # Sponsors/Partners
+  - name: sponsors
+    label: Partners
+    path: content/sponsors
+    type: collection
+    filename: "{{name}}"
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+        description: Organization or company name
+      - name: logo
+        label: Logo
+        type: image
+        required: true
+        description: Upload company logo (PNG/JPG, high resolution recommended)
+      - name: website
+        label: Website
+        type: string
+        required: false
+        description: Company website URL (optional)
+      - name: since
+        label: Partner Since
+        type: number
+        required: false
+        description: Year partnership began (optional)
+      - name: order
+        label: Display Position
+        type: select
+        required: true
+        default: "1"
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+          - "10"
+        description: Position on the page (1 = first, 2 = second, etc.). If multiple sponsors have the same position, they will be sorted alphabetically.
+      - name: body
+        label: Description
+        type: rich-text
+        required: true
+        description: Brief description of the organization and partnership
+
+  # Static Pages
+  - name: pages
+    label: Pages
+    path: content/pages
+    type: collection
+    filename: "{{title}}"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: body
+        label: Content
+        type: rich-text
+        required: true
