@@ -107,7 +107,7 @@ content:
       - name: body
         label: Bio
         type: text
-        required: true
+        required: false
         description: Brief background, interests, and role description (max 200 characters)
 
   # Sponsors/Partners
