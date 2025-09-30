@@ -6,6 +6,8 @@ export async function onRequestGet(context) {
   // Handle OAuth initiation
   if (url.pathname === '/api/auth') {
     const clientId = env.GITHUB_CLIENT_ID;
+    console.log('OAuth initiation - Client ID present:', !!clientId);
+
     if (!clientId) {
       return new Response('GitHub Client ID not configured', { status: 500 });
     }
@@ -13,6 +15,7 @@ export async function onRequestGet(context) {
     const redirectUri = `${url.origin}/api/auth/callback`;
     const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=repo`;
 
+    console.log('Redirecting to GitHub OAuth with redirect_uri:', redirectUri);
     return Response.redirect(githubUrl, 302);
   }
 
