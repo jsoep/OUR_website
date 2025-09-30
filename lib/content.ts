@@ -14,36 +14,32 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 
 export function getTeamMembers(): TeamMember[] {
   const teamDir = path.join(contentDirectory, 'team')
-  const subteams = ['leadership', 'aerodynamics', 'chassis', 'powertrain', 'electronics', 'operations']
   const members: TeamMember[] = []
 
-  subteams.forEach(subteam => {
-    const subteamDir = path.join(teamDir, subteam)
-    if (fs.existsSync(subteamDir)) {
-      const filenames = fs.readdirSync(subteamDir)
-      filenames.forEach(filename => {
-        if (filename.endsWith('.md')) {
-          const filePath = path.join(subteamDir, filename)
-          const fileContents = fs.readFileSync(filePath, 'utf8')
-          const { data, content } = matter(fileContents)
+  if (!fs.existsSync(teamDir)) return []
 
-          const member: TeamMember = {
-            name: data.name,
-            role: data.role,
-            subteam: subteam as TeamMember['subteam'],
-            image: data.image,
-            email: data.email,
-            linkedin: data.linkedin,
-            bio: content,
-            year: data.year,
-            course: data.course,
-            college: data.college,
-            joinedYear: data.joinedYear,
-            slug: filename.replace(/\.md$/, ''),
-          }
-          members.push(member)
-        }
-      })
+  const filenames = fs.readdirSync(teamDir)
+  filenames.forEach(filename => {
+    if (filename.endsWith('.md')) {
+      const filePath = path.join(teamDir, filename)
+      const fileContents = fs.readFileSync(filePath, 'utf8')
+      const { data, content } = matter(fileContents)
+
+      const member: TeamMember = {
+        name: data.name,
+        role: data.role,
+        subteam: data.subteam as TeamMember['subteam'],
+        image: data.image,
+        email: data.email,
+        linkedin: data.linkedin,
+        bio: content,
+        year: data.year,
+        course: data.course,
+        college: data.college,
+        joinedYear: data.joinedYear,
+        slug: filename.replace(/\.md$/, ''),
+      }
+      members.push(member)
     }
   })
 
@@ -56,14 +52,14 @@ export function getTeamMembersBySubteam(subteam: string): TeamMember[] {
 
 export function getTeamMember(subteam: string, slug: string): TeamMember | null {
   try {
-    const filePath = path.join(contentDirectory, 'team', subteam, `${slug}.md`)
+    const filePath = path.join(contentDirectory, 'team', `${slug}.md`)
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(fileContents)
 
     return {
       name: data.name,
       role: data.role,
-      subteam: subteam as TeamMember['subteam'],
+      subteam: data.subteam as TeamMember['subteam'],
       image: data.image,
       email: data.email,
       linkedin: data.linkedin,
