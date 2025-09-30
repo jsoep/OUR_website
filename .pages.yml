@@ -54,7 +54,7 @@ content:
     label: Team Members
     path: content/team
     type: collection
-    filename: "{primary}"
+    filename: "{subteam}/{primary}"
     fields:
       - name: name
         label: Name
