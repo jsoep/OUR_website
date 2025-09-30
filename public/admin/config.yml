@@ -8,6 +8,8 @@ backend:
   name: github
   repo: OxfordUniRacing/OUR_website
   branch: main
+  base_url: https://cloudflare-migration.our-website-83v.pages.dev
+  auth_endpoint: api/auth
 
 # Option 3: Use test-repo backend for local testing (uncomment for development)
 # backend:
