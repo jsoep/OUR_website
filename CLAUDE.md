@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is the Oxford University Racing (OUR) website, a modern Next.js application built for the university's Formula Student team. The site uses a content management system (Decap CMS) for non-technical team members to manage content like news articles, team profiles, and sponsor information.
+This is the Oxford University Racing (OUR) website, a modern Next.js application built for the university's Formula Student team. The site uses a content management system (Pages CMS) for non-technical team members to manage content like news articles, team profiles, and sponsor information.
 
 ## Development Commands
 
@@ -51,14 +51,18 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 
 This ensures cost-effective development with free preview deploys and manual production releases only when needed.
 
-### Local CMS Development
-**To test CMS locally:**
+### CMS Access
+**Using Pages CMS:**
 
-1. **Enable local backend**: Uncomment `local_backend: true` in `public/admin/config.yml`
-2. **Start CMS server**: Run `npx decap-server` in separate terminal (port 8081)
-3. **Start dev server**: Run `npm run dev` (port 3000/3001)
-4. **Access CMS**: Visit `http://localhost:3001/admin`
-5. **Before production**: Comment out `local_backend: true` and configure production authentication
+1. **Access online**: Visit [https://app.pagescms.org](https://app.pagescms.org)
+2. **Sign in with GitHub**: Authenticate using your GitHub account
+3. **Select repository**: Choose `OxfordUniRacing/OUR_website` and the branch you want to edit
+4. **Edit content**: Use the intuitive interface to manage news, team members, sponsors, and pages
+
+**Configuration:**
+- CMS configuration is stored in `.pages.yml` in the repository root
+- No OAuth server or authentication setup required - Pages CMS uses GitHub API directly
+- Changes are committed directly to your chosen branch via GitHub
 
 
 ## Architecture & Tech Stack
@@ -67,7 +71,7 @@ This ensures cost-effective development with free preview deploys and manual pro
 - **Next.js 14** with App Router (not Pages Router)
 - **TypeScript** with strict configuration
 - **Tailwind CSS** for styling with custom Oxford University branding
-- **Decap CMS** for content management (accessible at `/admin`)
+- **Pages CMS** for content management (accessible at [app.pagescms.org](https://app.pagescms.org))
 
 ### Content Management System
 - Content is stored as Markdown files in the `content/` directory
@@ -80,8 +84,9 @@ This ensures cost-effective development with free preview deploys and manual pro
 - `components/` - React components organized by feature
 - `content/` - Markdown content files organized by type
 - `lib/` - Utility functions, types, and content fetching logic
-- `public/` - Static assets including images and CMS admin
+- `public/` - Static assets including images
 - `styles/` - Global CSS styles
+- `.pages.yml` - Pages CMS configuration file
 
 ## Content Architecture
 
@@ -191,7 +196,7 @@ Components are organized by feature area:
 1. Define TypeScript interface in `lib/types.ts`
 2. Add fetching functions in `lib/content.ts`
 3. Create components in appropriate `components/` subdirectory
-4. Add CMS configuration in `public/admin/config.yml`
+4. Add CMS configuration in `.pages.yml`
 
 ### Modifying Team Structure
 - Team subteams are defined in the `getTeamMembers()` function
