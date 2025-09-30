@@ -114,7 +114,6 @@ content:
     label: Partners
     path: content/sponsors
     type: collection
-    filename: "{{name}}"
     fields:
       - name: name
         label: Name
