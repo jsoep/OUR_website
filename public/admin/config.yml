@@ -1,15 +1,13 @@
 # Option 1: Use git-gateway with Netlify Identity (recommended for Netlify)
-backend:
-  name: git-gateway
-  branch: main
-
-# Option 2: Use GitHub backend for Vercel (uncomment below and comment above)
 # backend:
-#   name: github
-#   repo: OxfordUniRacing/OUR_website
+#   name: git-gateway
 #   branch: main
-#   base_url: https://api.netlify.com
-#   auth_endpoint: auth
+
+# Option 2: Use GitHub backend for Cloudflare Pages/Vercel
+backend:
+  name: github
+  repo: OxfordUniRacing/OUR_website
+  branch: main
 
 # Option 3: Use test-repo backend for local testing (uncomment for development)
 # backend:
@@ -77,5 +75,5 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Content", name: "body", widget: "markdown" }
 
-# Site settings (will be updated after Netlify deployment)
-site_url: https://subtle-sawine-4de7d5.netlify.app # Update this with your actual Netlify URL
+# Site settings
+site_url: https://cloudflare-migration.our-website-83v.pages.dev
