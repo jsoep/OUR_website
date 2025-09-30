@@ -1,0 +1,11 @@
+# Redirects for Cloudflare Pages
+/team-members /team 301
+/team-members/* /team 301
+/blog /news 301
+/blog/:slug /news/:slug 301
+/partners /sponsors 301
+/about-us /about 301
+/contact-us /contact 301
+
+# Admin redirect for SPA routing
+/admin/* /admin/index.html 200

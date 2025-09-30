@@ -1,0 +1,30 @@
+[build]
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Production deploys (15 credits each) - MANUAL ONLY
+# To deploy: trigger manually in Netlify dashboard or use netlify deploy --prod
+[context.production]
+  command = "npm run build"
+  # Disable auto-deploy for main branch pushes
+  # publish = false
+
+# Deploy previews (0 credits) - for PRs
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploys (0 credits) - for feature branches
+[context.branch-deploy]
+  command = "npm run build"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
