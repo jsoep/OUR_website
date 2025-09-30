@@ -13,8 +13,13 @@ export async function onRequest(context: any) {
   const clientId = env.GITHUB_CLIENT_ID;
   const clientSecret = env.GITHUB_CLIENT_SECRET;
 
+  // Debug: log what we received (don't log secrets in production!)
+  console.log('clientId:', clientId ? 'present' : 'missing');
+  console.log('clientSecret:', clientSecret ? 'present' : 'missing');
+  console.log('env keys:', Object.keys(env));
+
   if (!clientId || !clientSecret) {
-    return new Response('OAuth not configured', { status: 500 });
+    return new Response(`OAuth not configured. ClientId: ${clientId ? 'present' : 'missing'}, ClientSecret: ${clientSecret ? 'present' : 'missing'}`, { status: 500 });
   }
 
   try {
