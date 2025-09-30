@@ -39,8 +39,11 @@ export async function onRequest(context: any) {
 
     const tokenData = await tokenResponse.json();
 
+    // Debug: log the response from GitHub
+    console.log('GitHub response:', tokenData);
+
     if (tokenData.error) {
-      return new Response(`GitHub OAuth error: ${tokenData.error_description}`, { status: 400 });
+      return new Response(`GitHub OAuth error: ${tokenData.error_description || tokenData.error}. Response: ${JSON.stringify(tokenData)}`, { status: 400 });
     }
 
     // Return the token in the format Decap CMS expects
