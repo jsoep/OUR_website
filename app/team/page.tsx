@@ -11,7 +11,9 @@ export const metadata: Metadata = {
 
 // Helper component to display team member cards
 function TeamMemberCards({ members, maxMembers = 3 }: { members: any[], maxMembers?: number }) {
-  const displayMembers = members.slice(0, maxMembers)
+  // Sort members alphabetically by role
+  const sortedMembers = [...members].sort((a, b) => a.role.localeCompare(b.role))
+  const displayMembers = sortedMembers.slice(0, maxMembers)
 
 
   if (displayMembers.length === 0) {
@@ -22,34 +24,71 @@ function TeamMemberCards({ members, maxMembers = 3 }: { members: any[], maxMembe
     )
   }
 
+  // Split into first row (2 items) and remaining rows (3 items each)
+  const firstRow = displayMembers.slice(0, 2)
+  const remainingRows = displayMembers.slice(2)
+
   return (
-    <div className="flex justify-center mb-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-5xl">
-        {displayMembers.map((member) => (
-          <div key={member.slug} className="border border-gray-300 bg-white rounded-lg shadow-sm p-4">
-            {member.image && (
-              <div className="relative w-full h-48 overflow-hidden rounded-t-lg mb-4">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
-            <div className="text-center">
-              <h3 className="text-lg font-semibold">{member.name}</h3>
-              <p className="text-sm text-gray-600">{member.role}</p>
-              <div className="text-sm text-gray-500">
-                {member.course} • Year {member.year}
-              </div>
-              <div className="text-gray-600 text-sm mt-2">
-                {member.bio}
+    <div className="flex flex-col items-center mb-6 gap-4">
+      {/* First row with 2 cards */}
+      {firstRow.length > 0 && (
+        <div className="grid gap-4 md:grid-cols-2 max-w-3xl w-full">
+          {firstRow.map((member) => (
+            <div key={member.slug} className="border border-gray-300 bg-white rounded-lg shadow-sm p-4">
+              {member.image && (
+                <div className="relative w-full h-48 overflow-hidden rounded-t-lg mb-4">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="text-center">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-gray-600">{member.role}</p>
+                <div className="text-sm text-gray-500">
+                  {member.course} • Year {member.year}
+                </div>
+                <div className="text-gray-600 text-sm mt-2">
+                  {member.bio}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+
+      {/* Remaining rows with 3 cards */}
+      {remainingRows.length > 0 && (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-5xl w-full">
+          {remainingRows.map((member) => (
+            <div key={member.slug} className="border border-gray-300 bg-white rounded-lg shadow-sm p-4">
+              {member.image && (
+                <div className="relative w-full h-48 overflow-hidden rounded-t-lg mb-4">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+              <div className="text-center">
+                <h3 className="text-lg font-semibold">{member.name}</h3>
+                <p className="text-sm text-gray-600">{member.role}</p>
+                <div className="text-sm text-gray-500">
+                  {member.course} • Year {member.year}
+                </div>
+                <div className="text-gray-600 text-sm mt-2">
+                  {member.bio}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
