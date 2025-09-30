@@ -65,7 +65,7 @@ export async function onRequestGet(context) {
       console.log('Access token obtained successfully');
 
       // Return success page that posts message to parent window (for CMS)
-      const content = JSON.stringify({ token: access_token, provider: 'github' });
+      const content = { token: access_token, provider: 'github' };
 
       return new Response(`
         <!DOCTYPE html>
@@ -76,25 +76,23 @@ export async function onRequestGet(context) {
         <body>
           <script>
             (function() {
-              function postMessageToParent(message) {
-                console.log('Sending message to opener:', message);
-                if (window.opener) {
-                  window.opener.postMessage(message, '*');
-                }
-              }
+              const receiveMessage = (message) => {
+                console.log('Received message from parent:', message);
+                window.opener.postMessage(
+                  'authorization:github:success:${JSON.stringify(content).replace(/'/g, "\\'")}',
+                  message.origin
+                );
+                window.removeEventListener("message", receiveMessage, false);
+              };
 
-              try {
-                const content = ${JSON.stringify(content)};
-                const message = 'authorization:github:success:' + content;
-                postMessageToParent(message);
+              window.addEventListener("message", receiveMessage, false);
 
-                setTimeout(function() {
-                  window.close();
-                }, 1000);
-              } catch (error) {
-                console.error('Error in callback:', error);
-                document.body.innerHTML = '<h1>Authentication successful!</h1><p>You can close this window.</p>';
-              }
+              console.log('Sending initial authorizing message');
+              window.opener.postMessage("authorizing:github", "*");
+
+              setTimeout(function() {
+                window.close();
+              }, 1000);
             })();
           </script>
           <h1>Authentication successful!</h1>
