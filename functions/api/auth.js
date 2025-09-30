@@ -57,7 +57,16 @@ export async function onRequestGet(context) {
 
       const { access_token } = tokenData;
 
+      if (!access_token) {
+        console.error('No access token in response:', tokenData);
+        return new Response('Failed to obtain access token', { status: 500 });
+      }
+
+      console.log('Access token obtained successfully');
+
       // Return success page that posts message to parent window (for CMS)
+      const content = JSON.stringify({ token: access_token, provider: 'github' });
+
       return new Response(`
         <!DOCTYPE html>
         <html>
@@ -66,18 +75,30 @@ export async function onRequestGet(context) {
         </head>
         <body>
           <script>
-            try {
-              window.opener.postMessage(
-                'authorization:github:success:${access_token}',
-                window.location.origin
-              );
-              window.close();
-            } catch (error) {
-              document.body.innerHTML = '<h1>Authentication successful!</h1><p>You can close this window.</p>';
-            }
+            (function() {
+              function postMessageToParent(message) {
+                console.log('Sending message to opener:', message);
+                if (window.opener) {
+                  window.opener.postMessage(message, '*');
+                }
+              }
+
+              try {
+                const content = ${JSON.stringify(content)};
+                const message = 'authorization:github:success:' + content;
+                postMessageToParent(message);
+
+                setTimeout(function() {
+                  window.close();
+                }, 1000);
+              } catch (error) {
+                console.error('Error in callback:', error);
+                document.body.innerHTML = '<h1>Authentication successful!</h1><p>You can close this window.</p>';
+              }
+            })();
           </script>
           <h1>Authentication successful!</h1>
-          <p>You can close this window.</p>
+          <p>Completing authentication...</p>
         </body>
         </html>
       `, {
