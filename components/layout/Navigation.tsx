@@ -154,8 +154,8 @@ export default function Navigation() {
 
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
-        <div className="absolute left-0 top-full z-50 w-screen bg-white shadow-lg ring-1 ring-black ring-opacity-5 md:hidden">
-          <div className="px-2 pb-3 pt-2">
+        <div className="fixed left-0 right-0 top-16 z-50 w-full bg-white shadow-lg ring-1 ring-black ring-opacity-5 md:hidden">
+          <div className="px-4 pb-3 pt-2">
             {navigationItems.map((item) => (
               <div key={item.title}>
                 <Link
