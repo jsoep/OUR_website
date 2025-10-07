@@ -39,9 +39,9 @@ This is the Oxford University Racing (OUR) website, a modern Next.js application
 11. **Switch to main**: `git checkout main`
 12. **Merge feature**: `git merge feature/branch-name`
 13. **Push to main**: `git push origin main` - This does NOT auto-deploy
-14. **Manual production deploy**: Use Netlify dashboard or CLI:
-    - Dashboard: Site → Deploys → "Deploy site" → Deploy from production branch
-    - CLI: `netlify deploy --prod` (requires netlify CLI)
+14. **Manual production deploy**: Use Cloudflare Pages dashboard:
+    - Go to Workers & Pages → OUR_website → Deployments
+    - Click "Create deployment" to manually deploy from main branch
 
 **ABSOLUTE REQUIREMENTS:**
 - NEVER start work without checking `git status` first
@@ -166,10 +166,32 @@ Components are organized by feature area:
 - Image caching and CSP policies
 
 ### Deployment & Environment
-- Deployed on Vercel with automatic builds
-- Uses environment variables for site URL and analytics
+- Deployed on Cloudflare Pages
+- Uses environment variables for site URL, analytics, and contact form
 - Static generation (SSG) for performance
 - Image optimization enabled
+
+### Contact Form Setup
+The contact form uses **Web3Forms** to send submissions directly to the team's email (our@eng.ox.ac.uk).
+
+**Setup Instructions:**
+1. Get an access key from [Web3Forms](https://web3forms.com/) using the team email
+2. Add the access key to your environment variables:
+   - **Local Development**: Create a `.env.local` file with:
+     ```
+     NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_access_key_here
+     ```
+   - **Cloudflare Pages**: Add the environment variable in the dashboard:
+     - Go to Settings → Environment variables
+     - Add `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` with your key
+     - Set it for both Production and Preview environments
+
+**How it Works:**
+- Form submissions go directly to Web3Forms API at `https://api.web3forms.com/submit`
+- No backend code or server needed
+- Emails are sent to the email address registered with the access key
+- Includes spam protection via honeypot field
+- Free tier: 250 submissions/month
 
 ## Development Guidelines
 

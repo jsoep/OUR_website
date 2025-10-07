@@ -15,12 +15,15 @@ export default function ContactForm() {
     try {
       const formData = new FormData(event.currentTarget)
 
-      const response = await fetch('/api/contact', {
+      // Submit directly to Web3Forms API
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData,
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (data.success) {
         setSubmitStatus('success')
         ;(event.target as HTMLFormElement).reset()
       } else {
@@ -55,12 +58,14 @@ export default function ContactForm() {
         )}
 
         <form name="contact" onSubmit={handleSubmit} className="space-y-4">
-          <input type="hidden" name="form-name" value="contact" />
-          <div style={{ display: 'none' }}>
-            <label>
-              Don't fill this out if you're human: <input name="bot-field" />
-            </label>
-          </div>
+          {/* Web3Forms Access Key - replace with your actual key */}
+          <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || ''} />
+
+          {/* Web3Forms Configuration */}
+          <input type="hidden" name="from_name" value="OUR Website Contact Form" />
+
+          {/* Honeypot for spam protection */}
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
 
           <div className="grid gap-4 md:grid-cols-2">
             <div>
