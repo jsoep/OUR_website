@@ -1,240 +1,201 @@
 # Oxford University Racing Website
 
-A modern, static website for Oxford University Racing (OUR), built with Next.js 14 and Decap CMS for easy content management.
+The official website for Oxford University Racing, Oxford's Formula Student team.
 
-## 🚀 Features
+## Updating Website Content
 
-- **Modern Tech Stack**: Next.js 14 with App Router, TypeScript, and Tailwind CSS
-- **Content Management**: Decap CMS for non-technical team members to update content
-- **Responsive Design**: Mobile-first approach with Oxford University branding
-- **Performance Optimized**: Static generation with optimized images and assets
-- **SEO Friendly**: Comprehensive meta tags and structured data
-- **Team Management**: Organized by sub-teams (Leadership, Aerodynamics, Chassis, etc.)
-- **News & Updates**: Dynamic news system with featured articles
-- **Sponsor Showcase**: Tiered sponsor display with partnership information
+### Using the CMS (Recommended)
 
-## 🛠️ Tech Stack
+Most content updates can be done through the Pages CMS without any technical knowledge:
 
-- **Framework**: [Next.js 14](https://nextjs.org/) with App Router
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **CMS**: [Decap CMS](https://decapcms.org/) (formerly Netlify CMS)
-- **Content**: Markdown with frontmatter
-- **Deployment**: [Vercel](https://vercel.com/)
-- **Version Control**: Git with GitHub Actions
+1. **Access the CMS**
+   - Visit [https://app.pagescms.org](https://app.pagescms.org)
+   - Sign in with your GitHub account
+   - Select the `OxfordUniRacing/OUR_website` repository
+   - Choose the branch you want to edit
 
-## 🚀 Quick Start
+2. **What You Can Edit**
+   - **News Articles**: Add race reports, updates, and announcements
+   - **Team Members**: Add or update team member profiles organized by subteam
+   - **Sponsors**: Manage sponsor information, logos, and display order
+   - **Static Pages**: Edit about, contact, and other page content
+
+3. **Making Changes**
+   - Click on the content type you want to edit
+   - Create new entries or edit existing ones
+   - Changes are saved directly to GitHub
+   - The site automatically rebuilds with your changes
+
+### Content Organization
+
+Content is stored as Markdown files in the repository:
+
+- `content/news/` - News articles and updates
+- `content/team/[subteam]/` - Team member profiles by subteam
+- `content/sponsors/` - Sponsor information
+- `content/pages/` - Static page content
+
+### Sponsor Display Order
+
+Sponsors can be reordered using the "Display Position" field in the CMS:
+- Position 1 appears first, Position 2 second, etc.
+- The build process automatically renumbers sponsors sequentially
+- Sponsors at the same position are sorted alphabetically
+
+### Adding Images
+
+Images should be placed in `public/images/` and organized by type:
+- Team member photos: `public/images/team/`
+- Sponsor logos: `public/images/sponsors/`
+- News images: `public/images/news/`
+
+## Contact Form Setup
+
+The contact form uses Web3Forms to send submissions to our@eng.ox.ac.uk.
+
+**Environment Variable Required:**
+```
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=e99a186a-9e95-4aef-b4d9-f5c3562c882d
+```
+
+This must be configured in Cloudflare Pages under Settings → Environment variables for both Production and Preview environments.
+
+## Deployment
+
+The site is deployed on Cloudflare Pages:
+
+**Production Branch**: `production`
+- Push to this branch to trigger production deployments
+- Requires manual deployment through Cloudflare dashboard
+
+**Preview Branches**: All other branches
+- Feature branches automatically create preview deployments
+- Used for testing changes before production
+
+## Development Setup
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn package manager
+- Node.js 18 or higher
+- npm package manager
 - Git
 
-### Installation
+### Local Development
 
-1. **Clone the repository**
+1. Clone the repository:
    ```bash
-   git clone https://github.com/your-org/oxford-racing-website.git
-   cd oxford-racing-website
+   git clone https://github.com/OxfordUniRacing/OUR_website.git
+   cd OUR_website
    ```
 
-2. **Install dependencies**
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-3. **Start development server**
+3. Create `.env.local` file with environment variables:
+   ```bash
+   NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=e99a186a-9e95-4aef-b4d9-f5c3562c882d
+   ```
+
+4. Start development server:
    ```bash
    npm run dev
    ```
 
-4. **Open your browser**
-   Visit [http://localhost:3000](http://localhost:3000)
+5. Open [http://localhost:3000](http://localhost:3000)
 
-### Available Scripts
+### Available Commands
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 - `npm run type-check` - Run TypeScript type checking
+- `npm run reorder-sponsors` - Manually reorder sponsor positions
 
-## 📁 Project Structure
+## Technical Architecture
+
+### Tech Stack
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Content Management**: Pages CMS with GitHub integration
+- **Deployment**: Cloudflare Pages
+- **Contact Forms**: Web3Forms
+
+### Project Structure
 
 ```
-oxford-racing-website/
+OUR_website/
 ├── app/                    # Next.js App Router pages
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Homepage
-│   ├── team/              # Team pages
-│   ├── news/              # News pages
-│   ├── sponsors/          # Sponsors page
-│   ├── about/             # About page
-│   └── contact/           # Contact page
-├── components/            # React components
-│   ├── layout/           # Layout components
-│   ├── home/             # Homepage components
-│   ├── team/             # Team components
-│   └── common/           # Shared components
-├── content/              # Markdown content
-│   ├── team/            # Team member profiles
-│   ├── news/            # News articles
-│   ├── sponsors/        # Sponsor information
-│   └── pages/           # Static pages
-├── lib/                 # Utility functions
-│   ├── types.ts         # TypeScript types
-│   ├── utils.ts         # Helper functions
-│   └── content.ts       # Content fetching
-├── public/              # Static assets
-│   ├── admin/          # Decap CMS admin
-│   ├── images/         # Image assets
-│   └── documents/      # PDF documents
-└── styles/             # CSS styles
-    └── globals.css     # Global styles
+├── components/             # React components
+│   ├── layout/            # Header, footer, navigation
+│   ├── home/              # Homepage components
+│   ├── team/              # Team page components
+│   ├── contact/           # Contact form
+│   └── common/            # Shared UI components
+├── content/               # Markdown content files
+├── lib/                   # Utility functions and types
+├── public/                # Static assets
+│   ├── images/           # Images organized by type
+│   └── documents/        # PDF files
+├── styles/                # Global CSS
+└── .pages.yml            # Pages CMS configuration
 ```
 
-## 📝 Content Management
+### Content Management System
 
-### Using Decap CMS
+Pages CMS configuration is stored in `.pages.yml`. Content is managed through:
+- Direct GitHub integration (no OAuth server needed)
+- Markdown files with frontmatter metadata
+- Automated git commits for content changes
 
-1. **Access the CMS**
-   - Visit `/admin` on your deployed site
-   - Login with your GitHub account (requires setup)
+### Design System
 
-2. **Content Types**
-   - **News Articles**: Create and manage blog posts
-   - **Team Members**: Add team member profiles by sub-team
-   - **Sponsors**: Manage sponsor information and logos
-   - **Pages**: Edit static page content
+**Brand Colors:**
+- Oxford Blue: `#002147` (primary)
+- Racing Red: `#FF0000` (accent)
+- Silver: `#C0C0C0` (secondary)
 
-3. **Editorial Workflow**
-   - Draft → Review → Publish workflow
-   - Content is stored as Markdown files in the repository
-   - Changes trigger automatic site rebuilds
+**Typography:**
+- Sans-serif: Inter
+- Monospace: JetBrains Mono
 
-### Manual Content Updates
+### Performance
 
-Content can also be updated directly by editing Markdown files in the `content/` directory:
+The site uses:
+- Static Site Generation (SSG) for all pages
+- Optimized image loading with Next.js Image component
+- Minimal JavaScript bundle size
+- Efficient CSS delivery with Tailwind
 
-- `content/news/` - News articles
-- `content/team/[subteam]/` - Team member profiles
-- `content/sponsors/` - Sponsor information
-- `content/pages/` - Static pages
+## Contributing
 
-## 🎨 Design System
+1. Create a feature branch from `main`
+2. Make your changes
+3. Test locally with `npm run build` and `npm run type-check`
+4. Push to your feature branch (creates preview deployment)
+5. Create a pull request to `main`
+6. After approval, merge to `main`
+7. Merge `main` to `production` for production deployment
 
-### Brand Colors
+### Code Guidelines
 
-- **Oxford Blue**: `#002147` (Primary brand color)
-- **Racing Red**: `#FF0000` (Accent color)
-- **Silver**: `#C0C0C0` (Secondary accent)
+- Use TypeScript for all new code
+- Follow existing component patterns
+- Use Tailwind CSS classes for styling
+- Test on multiple screen sizes
+- Ensure accessibility standards are met
 
-### Typography
+## Support
 
-- **Headings**: Inter (Bold)
-- **Body**: Inter (Regular)
-- **Monospace**: JetBrains Mono
-
-### Components
-
-All components follow a consistent design system with:
-- Responsive breakpoints (mobile, tablet, desktop)
-- Consistent spacing and typography
-- Accessible color contrasts
-- Hover states and animations
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. **Connect to Vercel**
-   - Push code to GitHub
-   - Connect repository to Vercel
-   - Deploy automatically on push to main
-
-2. **Environment Variables**
-   ```bash
-   NEXT_PUBLIC_SITE_URL=https://your-domain.com
-   NEXT_PUBLIC_GA_ID=your-google-analytics-id
-   ```
-
-3. **Custom Domain**
-   - Configure domain in Vercel dashboard
-   - Update DNS settings
-
-### GitHub Actions
-
-The project includes CI/CD workflows for:
-- Automated testing and linting
-- Build verification
-- Deployment to Vercel
-- Preview deployments for pull requests
-
-## 📊 Performance
-
-The website is optimized for performance with:
-- Static generation (SSG)
-- Image optimization
-- Code splitting
-- Minimal JavaScript bundle
-- Efficient CSS delivery
-
-**Target Metrics:**
-- Lighthouse Performance: 90+
-- First Contentful Paint: <1.5s
-- Time to Interactive: <3.5s
-
-## ♿ Accessibility
-
-Built with accessibility in mind:
-- WCAG 2.1 AA compliance
-- Semantic HTML structure
-- Proper ARIA labels
-- Keyboard navigation support
-- Screen reader compatibility
-
-## 🤝 Contributing
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Make your changes**
-4. **Commit your changes**
-   ```bash
-   git commit -m 'Add amazing feature'
-   ```
-5. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-6. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Use Tailwind CSS for styling
-- Ensure responsive design
-- Write meaningful commit messages
-- Test on multiple devices/browsers
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Support
-
-For questions or support:
+For questions or issues:
 - **Technical Issues**: Create an issue on GitHub
-- **Content Questions**: Contact the team at content@oxforduniracing.com
-- **General Inquiries**: contact@oxforduniracing.com
+- **Content Updates**: Use Pages CMS or contact team leadership
+- **General Inquiries**: our@eng.ox.ac.uk
 
-## 🏎️ About Oxford University Racing
+## About Oxford University Racing
 
-Oxford University Racing is Oxford's Formula Student team, dedicated to designing and building single-seater racing cars for international competition. We bring together students from across the university to gain hands-on engineering experience while competing at the highest level of student motorsport.
-
----
-
-Built with ❤️ by the Oxford University Racing team
+Oxford University Racing is Oxford's Formula Student team, designing and building single-seater racing cars to compete in international competitions. The team brings together students from across the university to gain hands-on engineering experience while competing at the highest level of student motorsport.
