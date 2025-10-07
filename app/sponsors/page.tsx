@@ -28,6 +28,29 @@ export default function SponsorsPage() {
           </p>
         </div>
 
+        {/* Call to Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-20">
+          <Link
+            href="/contact"
+            className="btn-primary px-8 py-3 text-lg font-medium"
+          >
+            Become a Sponsor
+          </Link>
+          <a
+            href="/documents/sponsorship-package.pdf"
+            download
+            className="btn-outline px-8 py-3 text-lg font-medium"
+          >
+            Download Sponsorship Package
+          </a>
+          <a
+            href="mailto:our@eng.ox.ac.uk"
+            className="btn-outline px-8 py-3 text-lg font-medium"
+          >
+            Email Us
+          </a>
+        </div>
+
         {/* Sponsors Listing */}
         <div className="space-y-20 mb-20">
           {sponsors.length > 0 ? (
@@ -117,6 +140,13 @@ export default function SponsorsPage() {
             >
               Become a Sponsor
             </Link>
+            <a
+              href="/documents/sponsorship-package.pdf"
+              download
+              className="btn-outline px-8 py-3 text-lg font-medium"
+            >
+              Download Sponsorship Package
+            </a>
             <a
               href="mailto:our@eng.ox.ac.uk"
               className="btn-outline px-8 py-3 text-lg font-medium"
