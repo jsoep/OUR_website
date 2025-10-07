@@ -12,7 +12,7 @@ Most content updates can be done through the Pages CMS without any technical kno
    - Visit [https://app.pagescms.org](https://app.pagescms.org)
    - Sign in with your GitHub account
    - Select the `OxfordUniRacing/OUR_website` repository
-   - Choose the branch you want to edit
+   - **Important**: Select the `main` branch to edit
 
 2. **What You Can Edit**
    - **News Articles**: Add race reports, updates, and announcements
@@ -23,8 +23,8 @@ Most content updates can be done through the Pages CMS without any technical kno
 3. **Making Changes**
    - Click on the content type you want to edit
    - Create new entries or edit existing ones
-   - Changes are saved directly to GitHub
-   - The site automatically rebuilds with your changes
+   - Changes are saved directly to the `main` branch on GitHub
+   - To publish changes to the live website, contact **Joshua Ampomah** to push to production
 
 ### Content Organization
 
@@ -49,28 +49,25 @@ Images should be placed in `public/images/` and organized by type:
 - Sponsor logos: `public/images/sponsors/`
 - News images: `public/images/news/`
 
-## Contact Form Setup
+### Publishing to Production
 
-The contact form uses Web3Forms to send submissions to our@eng.ox.ac.uk.
+Changes made through the CMS are saved to the `main` branch. To publish these changes to the live website:
 
-**Environment Variable Required:**
-```
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=e99a186a-9e95-4aef-b4d9-f5c3562c882d
-```
-
-This must be configured in Cloudflare Pages under Settings → Environment variables for both Production and Preview environments.
+**Contact Joshua Ampomah** to push changes from `main` to the `production` branch.
 
 ## Deployment
 
 The site is deployed on Cloudflare Pages:
 
 **Production Branch**: `production`
-- Push to this branch to trigger production deployments
-- Requires manual deployment through Cloudflare dashboard
+- This is the live website
+- Only Joshua Ampomah should push to this branch
+- Changes must be tested on `main` before production deployment
 
-**Preview Branches**: All other branches
-- Feature branches automatically create preview deployments
-- Used for testing changes before production
+**Main Branch**: `main`
+- Default branch for all content updates
+- Use this branch when editing through the CMS
+- Changes here do not immediately affect the live site
 
 ## Development Setup
 
@@ -170,6 +167,16 @@ The site uses:
 - Optimized image loading with Next.js Image component
 - Minimal JavaScript bundle size
 - Efficient CSS delivery with Tailwind
+
+### Contact Form Configuration
+
+The contact form uses Web3Forms to send submissions to our@eng.ox.ac.uk. The following environment variable is required:
+
+```
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=e99a186a-9e95-4aef-b4d9-f5c3562c882d
+```
+
+This is configured in Cloudflare Pages under Settings → Environment variables for both Production and Preview environments.
 
 ## Contributing
 
