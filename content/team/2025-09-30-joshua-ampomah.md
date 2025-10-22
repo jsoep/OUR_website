@@ -2,7 +2,7 @@
 name: Joshua Ampomah
 role: Co-Team Principal
 subteam: leadership
-image: /images/team/IMG_0025.jpeg
+image: /images/IMG_2332.jpg
 year: 4
 course: Engineering Science
 ---
