@@ -1,5 +1,5 @@
 ---
-name: Alexandra Ampomah
+name: Lexie Ampomah
 role: Marketing Manager
 subteam: marketing
 year: 2
