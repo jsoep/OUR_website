@@ -81,6 +81,7 @@ content:
             - battery
             - simulations
             - wheel assembly
+            - marketing
         description: Which sub-team the member belongs to
       - name: image
         label: Profile Image

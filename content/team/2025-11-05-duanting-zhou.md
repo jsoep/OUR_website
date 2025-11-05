@@ -1,8 +1,8 @@
 ---
-name: Nicolas Carcelle
+name: Duanting Zhou
 role: Chief Engineer
 subteam: bodywork and aerodynamics
-image: /images/IMG_2416.jpg
-year: 2
+image: /images/DUANTING ZHOU.jpg
+year: 3
 course: Engineering Science
 ---
