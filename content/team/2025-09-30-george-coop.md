@@ -2,7 +2,7 @@
 name: George Coop
 role: Technical Manager
 subteam: leadership
-image: /images/team/IMG_9271.jpg
+image: /images/GEORGE COOP.jpg
 year: 4
 course: Physics
 ---
