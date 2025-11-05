@@ -1,6 +1,6 @@
 ---
 name: Alexandra Ampomah
-role: Team Principal
+role: Marketing Manager
 subteam: marketing
 year: 2
 course: Archaeology and Anthropology
